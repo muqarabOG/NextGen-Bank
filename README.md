@@ -87,11 +87,12 @@ node proxy.js
 *   **Customer Dashboard**: `/portal/dashboard.php`
 *(Check the database `users` table for generated test accounts)*
 
+
 ---
 
 ## 🤝 Contributors
 *   **Frontend**: Ali Hamid
 *   **Database**: Aliyan Waseem
-*   **Backend & AI**: [Your Name/Handle]
+*   **Backend & AI**: Muqarab Nazir
 
 *Built with ❤️ for DBMS Course Project.*
