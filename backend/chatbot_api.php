@@ -15,7 +15,8 @@ if (!$message) {
 
 // URL of your Node.js local proxy
 // Using 127.0.0.1 instead of localhost to avoid IPv6 resolution delays in some XAMPP setups
-$proxy_url = 'http://127.0.0.1:3000/chat';
+// For Deployment: Use 'AI_PROXY_URL' environment variable
+$proxy_url = getenv('AI_PROXY_URL') ?: 'http://127.0.0.1:3000/chat';
 
 // Prepare POST payload
 $payload = json_encode(['message' => $message]);
