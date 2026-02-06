@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen | Onboarding Terminal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background: #050505;
+            font-family: 'Outfit', sans-serif;
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 10%, #2e1065 0%, transparent 40%), radial-gradient(circle at 90% 90%, #854d0e 0%, transparent 40%);
+            z-index: -1;
+            filter: blur(100px);
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 3rem;
+            backdrop-filter: blur(30px);
+            width: 100%;
+            max-width: 900px;
+            margin: auto;
+            padding: 3rem;
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.8);
+        }
+
+        input,
+        select,
+        textarea {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #fff !important;
+            border-radius: 1.25rem !important;
+            padding: 1rem !important;
+            width: 100%;
+            outline: none;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #FFD700 !important;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+        }
+
+        .label-text {
+            font-size: 9px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 8px;
+            display: block;
+            margin-left: 10px;
+        }
+
+        .btn-submit {
+            background: #FFD700;
+            color: #000;
+            font-weight: 800;
+            padding: 1.2rem;
+            border-radius: 1.5rem;
+            width: 100%;
+            transition: 0.4s;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-5px);
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-canvas"></div>
+
+    <div class="form-container">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-black italic uppercase tracking-tighter mb-2">Initialize <span
+                    class="text-yellow-500">Account</span></h1>
+            <p class="text-[9px] text-white/30 uppercase font-bold tracking-[0.5em] italic">Authorized Personnel
+                Enrollment Protocol</p>
+        </header>
+
+        <form id="regForm" class="space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Group 1: Personal -->
+                <div class="space-y-6">
+                    <h3 class="text-xs font-black uppercase text-yellow-500 border-b border-yellow-500/20 pb-2">01.
+                        Identity Matrix</h3>
+                    <div>
+                        <span class="label-text">Full Legal Name</span>
+                        <input type="text" name="full_name" required placeholder="John Doe">
+                    </div>
+                    <div>
+                        <span class="label-text">Father's Name</span>
+                        <input type="text" name="father_name" required placeholder="Richard Doe">
+                    </div>
+                    <div>
+                        <span class="label-text">National ID (CNIC)</span>
+                        <input type="text" name="cnic" required placeholder="XXXXX-XXXXXXX-X">
+                    </div>
+                    <div>
+                        <span class="label-text">Gender</span>
+                        <select name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <span class="label-text">Birth Registration Date</span>
+                        <input type="date" name="dob" required>
+                    </div>
+                    <div>
+                        <span class="label-text">Select Account Entity</span>
+                        <select name="account_type">
+                            <option value="1">Current (Retail)</option>
+                            <option value="2">Saving (Premium)</option>
+                            <option value="4">Business (Commercial)</option>
+                            <option value="5">Islamic (Sharia)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Group 2: Contact & Access -->
+                <div class="space-y-6">
+                    <h3 class="text-xs font-black uppercase text-yellow-500 border-b border-yellow-500/20 pb-2">02.
+                        Access Credentials</h3>
+                    <div>
+                        <span class="label-text">Global Mail Node (Email)</span>
+                        <input type="email" name="email" required placeholder="user@nextgen.com">
+                    </div>
+                    <div>
+                        <span class="label-text">Secure Username</span>
+                        <input type="text" name="username" required placeholder="user_alpha">
+                    </div>
+                    <div>
+                        <span class="label-text">Neural Key (Password)</span>
+                        <input type="password" name="password" required placeholder="••••••••">
+                    </div>
+                    <div>
+                        <span class="label-text">Telecom Link</span>
+                        <input type="tel" name="contact" required placeholder="+92 XXX XXXXXXX">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <span class="label-text">Appointment Date</span>
+                            <input type="date" name="appointment_date">
+                        </div>
+                        <div>
+                            <span class="label-text">Time Slot</span>
+                            <input type="time" name="appointment_time">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <h3 class="text-xs font-black uppercase text-yellow-500 border-b border-yellow-500/20 pb-2">03. Physical
+                    Node</h3>
+                <div>
+                    <span class="label-text">Geographical Residency</span>
+                    <textarea name="address" rows="2" placeholder="Street, City, Network..."></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit" id="subBtn">Deploy Registration Signal</button>
+
+            <div class="text-center">
+                <a href="login.html"
+                    class="text-[10px] font-black uppercase text-white/30 hover:text-yellow-500 transition tracking-widest">Already
+                    have an ID? Return to Login</a>
+            </div>
+        </form>
+
+        <div id="successView" class="hidden text-center py-20 animate-fade-in">
+            <i class="fa fa-fingerprint text-7xl text-green-500 mb-6 flex justify-center"></i>
+            <h2 class="text-3xl font-black italic mb-4">Identity Recorded</h2>
+            <p class="text-white/40 text-sm mb-10 max-w-sm mx-auto italic">Your registration signal has been
+                transmitted. Visit your nearest NextGen node with your ID for biometric finalization.</p>
+            <div class="bg-white/5 border border-white/10 p-6 rounded-3xl inline-block mb-10">
+                <p class="text-white/20 text-[9px] font-bold uppercase mb-2">Verification Form #</p>
+                <h4 id="formNum" class="text-2xl font-mono text-yellow-500 font-bold tracking-tighter">NG-2026-X</h4>
+            </div>
+            <div>
+                <a href="index.html"
+                    class="bg-white text-black px-10 py-3 rounded-xl font-black uppercase text-[10px]">Close
+                    Terminal</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('regForm').onsubmit = function (e) {
+            e.preventDefault();
+            const btn = document.getElementById('subBtn');
+            btn.innerHTML = '<i class="fa fa-sync fa-spin"></i> Transmitting Fingerprint...';
+            btn.disabled = true;
+
+            const formData = new FormData(this);
+
+            fetch('backend/signup_process.php', { method: 'POST', body: formData })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('regForm').classList.add('hidden');
+                        document.getElementById('successView').classList.remove('hidden');
+                        document.getElementById('formNum').innerText = data.form_number;
+                    } else {
+                        alert(data.error || "Signal Error: Registration Declined.");
+                        btn.innerHTML = 'Deploy Registration Signal';
+                        btn.disabled = false;
+                    }
+                })
+                .catch(() => {
+                    alert("System Disconnect.");
+                    btn.disabled = false;
+                });
+        };
+    </script>
+</body>
+
+</html>

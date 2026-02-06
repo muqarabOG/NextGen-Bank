@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen | Secure Terminal Access</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background: #050505;
+            font-family: 'Outfit', sans-serif;
+            color: #fff;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 10% 10%, #2e1065 0%, transparent 40%), radial-gradient(circle at 90% 90%, #854d0e 0%, transparent 40%);
+            z-index: -1;
+            filter: blur(100px);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 3rem;
+            backdrop-filter: blur(20px);
+            width: 100%;
+            max-width: 450px;
+            padding: 3rem;
+            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        input {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #fff !important;
+            border-radius: 1.5rem !important;
+            padding: 1.2rem 1.2rem 1.2rem 3.5rem !important;
+            width: 100%;
+            outline: none;
+            transition: 0.3s;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        input:focus {
+            border-color: #FFD700 !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+        }
+
+        input:focus+i {
+            color: #FFD700;
+        }
+
+        .btn-login {
+            background: #FFD700;
+            color: #000;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            padding: 1.2rem;
+            border-radius: 1.5rem;
+            width: 100%;
+            transition: 0.4s;
+            margin-top: 1rem;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .btn-login:hover {
+            transform: translateY(-5px);
+            background: #fff;
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.2);
+        }
+
+        .scan-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .scan-line {
+            width: 80%;
+            height: 2px;
+            background: #FFD700;
+            box-shadow: 0 0 20px #FFD700;
+            position: absolute;
+            animation: scan 2s linear infinite;
+        }
+
+        @keyframes scan {
+            0% {
+                top: 10%;
+            }
+
+            50% {
+                top: 90%;
+            }
+
+            100% {
+                top: 10%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-canvas"></div>
+
+    <div class="glass-card">
+        <div class="text-center mb-10">
+            <h1 class="text-2xl font-black italic uppercase tracking-tighter text-white mb-2">NextGen<span
+                    class="text-yellow-500">.</span>Portal</h1>
+            <p class="text-[9px] text-white/30 uppercase font-bold tracking-[0.5em] italic">Encrypted Connection
+                Established</p>
+        </div>
+
+        <form id="loginForm" class="space-y-4">
+            <div class="input-group">
+                <input type="text" id="username" placeholder="USERNAME" required autofocus>
+                <i class="fa fa-user-shield"></i>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="ACCESS KEY" required>
+                <i class="fa fa-key"></i>
+            </div>
+
+            <button type="submit" class="btn-login" id="loginBtn">Authorize Access</button>
+
+            <div class="flex justify-between items-center mt-6 px-2">
+                <a href="register.html"
+                    class="text-[10px] font-black uppercase text-white/30 hover:text-yellow-500 transition tracking-widest">Register
+                    New User</a>
+                <a href="index.html"
+                    class="text-[10px] font-black uppercase text-white/30 hover:text-white transition tracking-widest">Main
+                    Node</a>
+            </div>
+        </form>
+
+        <div class="scan-overlay" id="scanOverlay">
+            <div class="scan-line"></div>
+            <i class="fa fa-fingerprint text-5xl text-yellow-500 mb-6 animate-pulse"></i>
+            <p class="text-[10px] font-black text-yellow-500 uppercase tracking-[0.4em]">Biometric Verification In
+                Progress</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').onsubmit = function (e) {
+            e.preventDefault();
+            const overlay = document.getElementById('scanOverlay');
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+
+            overlay.style.display = 'flex';
+
+            const formData = new FormData();
+            formData.append('username', user);
+            formData.append('password', pass);
+
+            fetch('backend/login_process.php', { method: 'POST', body: formData })
+                .then(res => res.json())
+                .then(data => {
+                    setTimeout(() => {
+                        if (data.success) {
+                            if (data.user_type === 'Staff') {
+                                if (data.role === 'Admin') window.location.href = "staff/admin.php";
+                                else if (data.role === 'Cashier') window.location.href = "staff/cashier.php";
+                                else if (data.role === 'Complain_Handler') window.location.href = "staff/support_staff.php";
+                                else window.location.href = "staff/accountant.php";
+                            } else {
+                                window.location.href = "portal/dashboard.php";
+                            }
+                        } else {
+                            overlay.style.display = 'none';
+                            alert(data.error || "Authentication Denied.");
+                        }
+                    }, 1500);
+                })
+                .catch(() => {
+                    overlay.style.display = 'none';
+                    alert("System Link Failure.");
+                });
+        };
+    </script>
+</body>
+
+</html>
