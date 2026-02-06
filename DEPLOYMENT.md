@@ -62,4 +62,36 @@ $port       = getenv('MYSQLPORT') ?: 3306;
 
 $conn = mysqli_connect($servername, $username, $password, $dbname, $port);
 ```
-*(Your Assistant can apply this fix for you now if you wish!)* 
+
+---
+
+## ☁️ Option 2: Deploy to Render.com (Alternative)
+
+Render requires **Docker** for PHP sites. We have included a `Dockerfile` for you.
+
+### 1. Create Database
+1.  Click **"New"** -> **"PostgreSQL"** (Note: Render MySQL is paid/beta usually, check availability. If MySQL is unavailable, you might need an external DB like Aiven or CleverCloud). 
+    *   *Wait!* Our code uses `mysqli` (MySQL). **You must use a MySQL database.**
+    *   If Render doesn't offer free MySQL, sticking to Railway is safer. 
+    *   Assuming you have a remote MySQL connection string.
+
+### 2. Deploy AI Service (Node.js)
+1.  **New** -> **Web Service**.
+2.  Connect Repo -> `NextGen-Bank`.
+3.  **Root Directory**: `ai_service`.
+4.  **Runtime**: Node.
+5.  **Build Command**: `npm install`.
+6.  **Start Command**: `node proxy.js`.
+7.  **Environment Variables**:
+    *   `GROQ_API_KEY`: (Your Key)
+    *   `PORT`: `3000`
+
+### 3. Deploy Website (PHP via Docker)
+1.  **New** -> **Web Service**.
+2.  Connect Repo -> `NextGen-Bank`.
+3.  **Runtime**: **Docker** (Select this!).
+4.  **Environment Variables**:
+    *   `MYSQLHOST`, `MYSQLUSER`, `MYSQLPASSWORD`, `MYSQLDATABASE`, `MYSQLPORT`: (From your DB provider)
+    *   `AI_PROXY_URL`: (The URL of your AI Service from Step 2)
+
+---
