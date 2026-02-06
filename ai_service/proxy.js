@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 const cors = require("cors");
@@ -6,8 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// ⚠️ Move this to .env later (for production)
-const GROQ_API_KEY = "INSERT_YOUR_GROQ_API_KEY_HERE";
+const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
 app.post("/chat", async (req, res) => {
     try {
